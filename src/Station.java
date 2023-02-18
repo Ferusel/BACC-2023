@@ -36,6 +36,10 @@ class Station implements Comparable<Station> {
         return this.queue.poll();
     }
 
+    public int getQueueLength() {
+        return this.queue.size();
+    }
+
     /**
      * DD: Compare stations by length, then by ID
      *
