@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * This class is a general abstract class that
  * encapsulates a simulation.  To implement a
@@ -16,5 +18,5 @@ abstract class Simulation {
    *         simulator can use to kick-start the 
    *         simulation.
    */
-  public abstract Event[] getInitialEvents();
+  public abstract ArrayList<Event> getInitialEvents();
 }

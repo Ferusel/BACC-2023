@@ -15,14 +15,17 @@
 abstract class Event implements Comparable<Event> {
   /** The time this event occurs in the simulation. */
   private final double time;
+  private final EventPriorityEnum eventPriority; // Represents the priority of an Event occurring given the time is the same
+  // JoinStationQueue -> JoinTruckQueue -> ServiceEnd ->  TruckTransport -> EventArrival -> ServiceBegin
 
   /**
    * Creates an event that occurs at the given time.
    *
    * @param time The time the event occurs.
    */
-  public Event(double time) {
+  public Event(double time, EventPriorityEnum eventPriority) {
     this.time = time;
+    this.eventPriority = eventPriority;
   }
 
   /**
@@ -47,7 +50,13 @@ abstract class Event implements Comparable<Event> {
     if (this.time > e.time) {
       return 1;
     } else if (this.time == e.time) {
-      return 0;
+      if (this.eventPriority.getValue() > e.eventPriority.getValue()) {
+        return 1;
+      } else if (this.eventPriority.getValue() < e.eventPriority.getValue()) {
+        return -1;
+      } else {
+        return 0;
+      }
     } else {
       return -1;
     }
