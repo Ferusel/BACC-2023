@@ -13,7 +13,7 @@ class EventProcessItem extends Event {
 
     @Override
     public String toString() {
-        return super.toString() + String.format(": %s arrived", i);
+        return super.toString() + String.format(": %s processing", i);
     }
 
 
@@ -22,7 +22,7 @@ class EventProcessItem extends Event {
         Station s = Company.getNextStation(this.i, this.b);
         if (s == null) {
             // Should never happen
-            System.out.println("=====> BUG FOUND IN EVENTARRIVAL: Item completed but still called");
+            System.out.println("=====> BUG FOUND IN EVENTPROCESSING: Item completed but still called");
             return new Event[]{};
         }
 

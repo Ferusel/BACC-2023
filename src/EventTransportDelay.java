@@ -1,28 +1,23 @@
-/**
- * Only created when Item is created
- */
-class EventJoinTruckQueue extends Event {
-    private final Item i;
+import java.util.ArrayList;
+
+class EventTransportDelay extends Event {
     private final Building b;
     private final int DELAY_TIME = 5;
 
-    public EventJoinTruckQueue(double time, Item i, Building b) {
-        super(time, EventPriorityEnum.P_JoinTruckQueue);
-        this.i = i;
-        this.b = b;
+    public EventTransportDelay(double time, Building itemsLocation) {
+        super(time, EventPriorityEnum.P_TruckTransport);
+        this.b = itemsLocation;
     }
 
     @Override
     public String toString() {
-        return super.toString() + String.format(": %s joining truck queue at %s", i, b);
+        return super.toString() + String.format(": Delaying occurred, checking if Truck can transport now. ");
     }
-
 
     @Override
     public Event[] simulate() {
-        this.b.enqueueTransport(this.i);
         if (Company.isBuildingX(this.b) && this.b.getTransportQueueLength() >= 5) {
-            if (this.b == Company.getTruck().getCurrentLocation()) {
+            if (Company.getBuildingX() == Company.getTruck().getCurrentLocation()) {
                 return new Event[]{
                         new EventTransport(this.getTime(), this.b, false)
                 };
@@ -32,8 +27,6 @@ class EventJoinTruckQueue extends Event {
                 };
             }
         }
-
-        // For BuildingY
         return new Event[]{};
     }
 }

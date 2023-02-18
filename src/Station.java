@@ -47,7 +47,7 @@ class Station implements Comparable<Station> {
      */
     @Override
     public int compareTo(Station c) {
-        if (this.queue.size() == 0 && c.queue.size() == 0) {
+        if (this.queue.size() == c.queue.size()) {
             // If queues of each station are the same length
             if (this.isAvailable() && c.isAvailable()) {
                 // and both are available, just choose the station in lexicographic order
@@ -64,6 +64,6 @@ class Station implements Comparable<Station> {
 
     @Override
     public String toString() {
-        return String.format("Station %s", this.stationName);
+        return String.format("%s", this.stationName);
     }
 }

@@ -15,17 +15,18 @@ class EventServiceBegin extends Event {
 
     @Override
     public String toString() {
-        return super.toString() + String.format(": %s servicing at %s", this.i, this.s);
+        return super.toString() + String.format(": %s service begin at %s", this.i, this.s);
     }
 
 
     @Override
     public Event[] simulate() {
         this.s.makeBusy();
+        int currStep = i.getCurrStep();
         // Process item
         this.i.processToNextStep();
         return new Event[]{
-                new EventServiceEnd(this.getTime() + Company.getProcessingTime(this.s, this.i), this.s, this.i, this.b)
+                new EventServiceEnd(this.getTime() + Company.getProcessingTime(this.s, currStep), this.s, this.i, this.b)
         };
     }
 }

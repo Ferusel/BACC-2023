@@ -25,11 +25,9 @@ class BACCSimulation extends Simulation {
         for (int i = 0; i < MAX_CYCLES; i++) {
             int arrivalTime = i * 5;
             Item l = new Item(arrivalTime, 1);
-            Station s = Company.getNextStation(l, Company.getBuildingX()); // first step
             this.initEvents.add(new EventArrival(arrivalTime, l, Company.getBuildingX()));
         }
     }
-
 
 
     /**

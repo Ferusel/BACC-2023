@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
@@ -31,10 +32,18 @@ public class Building {
         return this.transportItemQueue.size();
     }
 
-    public Item[] getTopFiveItems() {
-        Item[] res = new Item[5];
+    /**
+     * Might not return a full list of Items, need to guard
+     *
+     * @return
+     */
+    public ArrayList<Item> getTopFiveItems() {
+        ArrayList<Item> res = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            res[i] = this.dequeueTransport();
+            Item x = this.dequeueTransport();
+            if (x != null) {
+                res.add(x);
+            }
         }
         return res;
     }

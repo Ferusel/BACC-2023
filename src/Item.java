@@ -1,12 +1,12 @@
 class Item implements Comparable<Item> {
-    private static int lastId;
+    private static int lastId = 0;
     private final int id;
     private final double arrivalTime;
     private int currStep;
     private final int LAST_STEP = 6;
 
     public Item(double arrivalTime, int currStep) {
-        this.id = lastId++;
+        this.id = ++lastId;
         this.arrivalTime = arrivalTime;
         this.currStep = currStep;
     }

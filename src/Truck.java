@@ -15,12 +15,12 @@ public class Truck {
         return destination;
     }
 
-    /**
-     * Swaps currentLocation and destination
-     */
-    public void completeJourney() {
-        Building tmp = this.currentLocation;
-        this.currentLocation = this.destination;
-        this.destination = tmp;
+    public void setCurrentLocation(Building l) {
+        this.currentLocation = l;
     }
+
+    public void setDestination(Building d) {
+        this.destination = d;
+    }
+
 }

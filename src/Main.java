@@ -7,10 +7,9 @@ import java.util.Scanner;
  * @version CS2030S AY20/21 Semester 2
  */
 class Main {
-  public static void main(String[] args) {
+    public static void main(String[] args) {
 
-    Simulation simulation = new BACCSimulation();
-    new Simulator(simulation).run();
-
-  }
+        Simulation simulation = new BACCSimulation();
+        new Simulator(simulation).run();
+    }
 }

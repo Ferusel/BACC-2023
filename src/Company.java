@@ -2,6 +2,10 @@ import java.util.Map;
 import java.util.PriorityQueue;
 
 public class Company {
+    // TODO: Magic Numbers
+    static final int STEP3 = 5;
+    static final int STEP5 = 3;
+
     static Station stationA = new Station(new int[]{ 1, 3 }, "StationA", 0);
     static Station stationB = new Station(new int[]{ 2, 6 }, "StationB", 1);
     static Station stationC = new Station(new int[]{ 2, 5 }, "StationC", 2);
@@ -60,6 +64,10 @@ public class Company {
         return buildingX;
     }
 
+    public static Building getBuildingY() {
+        return buildingY;
+    }
+
     public static Station getNextStation(Item i, Building buildingContainingItem) {
         // Guard clause, just in case
         int step = i.getCurrStep();
@@ -67,30 +75,66 @@ public class Company {
             return null;
         }
 
-        // Sort next possible stations using PQ. Next possible stations include
-        Station[] nextPossibleStations = stepToStationMap.get(step);
-        PriorityQueue<Station> sortedStations = new PriorityQueue<>();
-        for (Station x : nextPossibleStations) {
-            sortedStations.add(x);
-        }
-
-        if (buildingContainingItem == buildingX) {
-            sortedStations.add(truckStationX);
-        } else {
-            sortedStations.add(truckStationY);
-        }
-
-        Station nextStation = sortedStations.poll();
-        if (buildingContainingItem.containsStation(nextStation)) {
-            // No need to move Item to transport queue
-            return nextStation;
-        }
-
-        // Next station is in the other building. We just return the TruckStation to await it for transport.
-        if (buildingX.containsStation(nextStation)) {
+        switch (step) {
+        case 1:
+            return stationA;
+        case 2:
+            if (stationB.compareTo(stationC) < 0) {
+                return stationB; // stationB is "smaller"
+            }
+            return stationC;
+        case 3:
+            if (truckStationX.getQueueLength() >= STEP3) {
+                return stationA;
+            }
             return truckStationX;
+        case 4:
+            if (buildingContainingItem == buildingX) {
+                return truckStationX;
+            }
+            // Item at Y, go to D or F based on shorter queue
+            if (stationD.compareTo(stationF) < 0) {
+                return stationD;
+            }
+            return stationF;
+        case 5:
+            if (truckStationY.getQueueLength() >= STEP5) {
+                return stationE;
+            }
+            return truckStationY;
+        case 6:
+            if (buildingContainingItem == buildingX) {
+                return stationB;
+            }
+            return stationF;
         }
-        return truckStationY;
+
+        return null; // Never reaches here
+
+//        // Sort next possible stations using PQ. Next possible stations include
+//        Station[] nextPossibleStations = stepToStationMap.get(step);
+//        PriorityQueue<Station> sortedStations = new PriorityQueue<>();
+//        for (Station x : nextPossibleStations) {
+//            sortedStations.add(x);
+//        }
+//
+//        if (buildingContainingItem == buildingX) {
+//            sortedStations.add(truckStationX);
+//        } else {
+//            sortedStations.add(truckStationY);
+//        }
+//
+//        Station nextStation = sortedStations.poll();
+//        if (buildingContainingItem.containsStation(nextStation)) {
+//            // No need to move Item to transport queue
+//            return nextStation;
+//        }
+//
+//        // Next station is in the other building. We just return the TruckStation to await it for transport.
+//        if (buildingX.containsStation(nextStation)) {
+//            return truckStationX;
+//        }
+//        return truckStationY;
     }
 
     public static Building getBuildingAtStation(Station s) {
@@ -100,12 +144,16 @@ public class Company {
         return buildingY;
     }
 
-    public static int getProcessingTime(Station s, Item i) {
-        return stationToProcessTimeMap.get(s).get(i.getCurrStep());
+    public static int getProcessingTime(Station s, int currStep) {
+        return stationToProcessTimeMap.get(s).get(currStep);
     }
 
     public static Truck getTruck() {
         return truck;
+    }
+
+    public static boolean isBuildingX(Building test) {
+        return test == buildingX;
     }
 
     public static void completeOneProduct() {
