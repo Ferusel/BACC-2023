@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.PriorityQueue;
 
 /**
@@ -41,15 +44,28 @@ public class Simulator {
     public void run() {
         Event event = this.events.poll();
         int counter = 0;
-        while (event != null && counter <= 5000) {
-            System.out.println(event);
-            Event[] newEvents = event.simulate();
-            for (Event e : newEvents) {
-                this.events.add(e);
+        try {
+            FileWriter log = new FileWriter("logged_results.txt");
+
+            while (event != null && counter <= 5000) {
+                System.out.println(event);
+                log.write(String.format("%s\n", event));
+                Event[] newEvents = event.simulate();
+                for (Event e : newEvents) {
+                    this.events.add(e);
+                }
+                event = this.events.poll();
+                counter++;
             }
-            event = this.events.poll();
-            counter++;
+
+            log.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return;
+    }
+
+    public void writeToFile() throws IOException {
+
     }
 }

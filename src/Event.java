@@ -71,7 +71,7 @@ abstract class Event implements Comparable<Event> {
      */
     @Override
     public String toString() {
-        return String.format("%.3f", this.time);
+        return String.format("%.0f", this.time);
     }
 
     /**
