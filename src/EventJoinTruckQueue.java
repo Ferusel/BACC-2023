@@ -14,7 +14,7 @@ class EventJoinTruckQueue extends Event {
 
     @Override
     public String toString() {
-        return super.toString() + String.format(": %s joining truck queue at %s", i, b);
+        return super.toString() + String.format(": EVENT_JOIN_TRUCK_QUEUE : %s joining truck queue at %s", i, b);
     }
 
 

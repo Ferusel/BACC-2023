@@ -12,7 +12,7 @@ class EventTransport extends Event {
 
     @Override
     public String toString() {
-        return super.toString() + String.format(": Event transport called");
+        return super.toString() + String.format(": EVENT_TRANSPORT : Event transport called");
     }
 
     @Override

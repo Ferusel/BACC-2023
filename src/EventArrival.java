@@ -13,7 +13,7 @@ class EventArrival extends Event {
 
     @Override
     public String toString() {
-        return super.toString() + String.format(": %s arrived", i);
+        return super.toString() + String.format(": EVENT_ARRIVAL : %s arrived", i);
     }
 
 

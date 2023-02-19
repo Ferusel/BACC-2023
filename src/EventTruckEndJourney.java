@@ -14,7 +14,8 @@ class EventTruckEndJourney extends Event {
 
     @Override
     public String toString() {
-        return super.toString() + String.format(": Truck now reaching %s", this.truck.getDestination());
+        return super.toString() + String.format(": EVENT_TRUCK_END_JOURNEY : Truck now reaching %s",
+                this.truck.getDestination());
     }
 
 

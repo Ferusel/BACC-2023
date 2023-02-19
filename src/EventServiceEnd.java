@@ -15,7 +15,7 @@ class EventServiceEnd extends Event {
 
     @Override
     public String toString() {
-        return super.toString() + String.format(": %s service end at %s", this.i, this.s);
+        return super.toString() + String.format(": EVENT_SERVICE_END : %s service end at %s", this.i, this.s);
     }
 
 

@@ -11,7 +11,7 @@ class EventCompleteItem extends Event {
 
     @Override
     public String toString() {
-        return super.toString() + String.format(": One Item completed (%s)", this.i);
+        return super.toString() + String.format(": EVENT_COMPLETE_ITEM : One Item completed (%s)", this.i);
     }
 
 

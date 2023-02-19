@@ -13,7 +13,7 @@ class EventProcessItem extends Event {
 
     @Override
     public String toString() {
-        return super.toString() + String.format(": %s processing", i);
+        return super.toString() + String.format(": EVENT_PROCESS_ITEM : %s processing", i);
     }
 
 
