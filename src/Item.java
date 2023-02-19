@@ -46,7 +46,7 @@ class Item implements Comparable<Item> {
         if (this == Item.EMPTY_ITEM) {
             return "";
         }
-        return "I" + id;
+        return Integer.toString(id);
     }
 
     // DD: Order Item in a Queue based on how late in a Step it is

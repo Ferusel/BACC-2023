@@ -13,8 +13,8 @@ public class Company {
     static TruckStation truckStationX = new TruckStation();
     static TruckStation truckStationY = new TruckStation();
 
-    static Building buildingX = new Building(new Station[]{ stationA, stationB, stationC, truckStationX }, "BuildingX");
-    static Building buildingY = new Building(new Station[]{ stationD, stationE, stationF, truckStationY }, "BuildingY");
+    static Building buildingX = new Building(new Station[]{ stationA, stationB, stationC, truckStationX }, "X");
+    static Building buildingY = new Building(new Station[]{ stationD, stationE, stationF, truckStationY }, "Y");
 
     static Truck truck = new Truck(buildingX, buildingY);
     static int completeCount = 0;
