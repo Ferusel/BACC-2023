@@ -13,7 +13,7 @@ import java.util.PriorityQueue;
  * @version CS2030S AY20/21 Semester 2
  */
 public class Simulator {
-    private final int MAX_LOOP = 50000;
+    private final int MAX_TIME = 10800;
 
     /**
      * The event queue.
@@ -48,20 +48,28 @@ public class Simulator {
      * simulation returns one or more events, add them
      * to the queue, and repeat.
      */
-    public void run() {
+    public int run() {
         Event event = this.events.poll();
-        int counter = 0;
         try {
             FileWriter fw = new FileWriter("logged_results.csv");
             FileWriter completedItemsFw = new FileWriter("completed_items.csv");
             FileWriter logsFw = new FileWriter("logs.txt");
-            fw.write(String.format("%s," +
+            fw.write(String.format(
+                    "%s," +
                             "%s,%s," +
                             "%s,%s," +
                             "%s,%s," +
                             "%s,%s," +
                             "%s,%s," +
-                            "%s,%s\n",
+                            "%s,%s," +
+                            "%s," +
+                            "%s," +
+                            "%s," +
+                            "%s," +
+                            "%s," +
+                            "%s," +
+                            "%s," +
+                            "%s\n",
                     "time",
                     "StationA_Item", "StationA_ItemStep",
                     "StationB_Item", "StationB_ItemStep",
@@ -80,7 +88,7 @@ public class Simulator {
             ));
             completedItemsFw.write(String.format("%s, %s)", "Time", "ItemID"));
             int t = 0;
-            while (event != null && counter < MAX_LOOP) {
+            while (event != null && t <= MAX_TIME) {
                 System.out.println(event);
                 logsFw.write(event + "\n");
                 if (event instanceof EventCompleteItem) {
@@ -97,8 +105,10 @@ public class Simulator {
                     this.events.add(e);
                 }
                 event = this.events.poll();
-                counter++;
             }
+            String finalMessage = String.format("Throughput: %s", Company.getThroughput());
+            System.out.println(finalMessage);
+            logsFw.write(finalMessage + "\n");
 
             fw.close();
             logsFw.close();
@@ -106,6 +116,6 @@ public class Simulator {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return;
+        return Company.getThroughput();
     }
 }

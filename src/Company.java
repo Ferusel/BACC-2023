@@ -1,10 +1,8 @@
 import java.util.Map;
-import java.util.PriorityQueue;
 
 public class Company {
-    // TODO: Magic Numbers
-    static final int STEP3 = 3;
-    static final int STEP5 = 3;
+    static int STEP3 = 4;
+    static int STEP5 = 2;
 
     static Station stationA = new Station(new int[]{ 1, 3 }, "StationA", 0);
     static Station stationB = new Station(new int[]{ 2, 6 }, "StationB", 1);
@@ -19,7 +17,54 @@ public class Company {
     static Building buildingY = new Building(new Station[]{ stationD, stationE, stationF, truckStationY }, "BuildingY");
 
     static Truck truck = new Truck(buildingX, buildingY);
-    static int completeCount;
+    static int completeCount = 0;
+
+    static void resetCompany(int step3, int step5) {
+        STEP3 = step3;
+        STEP5 = step5;
+        stationA = new Station(new int[]{ 1, 3 }, "StationA", 0);
+        stationB = new Station(new int[]{ 2, 6 }, "StationB", 1);
+        stationC = new Station(new int[]{ 2, 5 }, "StationC", 2);
+        stationD = new Station(new int[]{ 1, 4 }, "StationD", 3);
+        stationE = new Station(new int[]{ 1, 3, 5 }, "StationE", 4);
+        stationF = new Station(new int[]{ 4, 6 }, "StationF", 5);
+        truckStationX = new TruckStation();
+        truckStationY = new TruckStation();
+
+        buildingX = new Building(new Station[]{ stationA, stationB, stationC, truckStationX }, "BuildingX");
+        buildingY = new Building(new Station[]{ stationD, stationE, stationF, truckStationY }, "BuildingY");
+
+        truck = new Truck(buildingX, buildingY);
+        completeCount = 0;
+
+        stationToProcessTimeMap = Map.ofEntries(
+                Map.entry(stationA, Map.ofEntries(
+                        Map.entry(1, 5),
+                        Map.entry(3, 10))
+                ),
+                Map.entry(stationB, Map.ofEntries(
+                        Map.entry(2, 15),
+                        Map.entry(6, 10)
+                )),
+                Map.entry(stationC, Map.ofEntries(
+                        Map.entry(2, 15),
+                        Map.entry(5, 10)
+                )),
+                Map.entry(stationD, Map.ofEntries(
+                        Map.entry(1, 5),
+                        Map.entry(4, 15)
+                )),
+                Map.entry(stationE, Map.ofEntries(
+                        Map.entry(1, 5),
+                        Map.entry(3, 5),
+                        Map.entry(5, 15)
+                )),
+                Map.entry(stationF, Map.ofEntries(
+                        Map.entry(4, 10),
+                        Map.entry(6, 10)
+                ))
+        );
+    }
 
     // Map of { Step : Station[] }
     // static final Map<Integer, Station[]> stepToStationMap = Map.ofEntries(
@@ -32,7 +77,7 @@ public class Company {
     // );
 
     // Map of { Station: { Step : Time} }
-    static final Map<Station, Map<Integer, Integer>> stationToProcessTimeMap = Map.ofEntries(
+    static Map<Station, Map<Integer, Integer>> stationToProcessTimeMap = Map.ofEntries(
             Map.entry(stationA, Map.ofEntries(
                     Map.entry(1, 5),
                     Map.entry(3, 10))
@@ -120,9 +165,14 @@ public class Company {
                 return truckStationX;
             }
             // Item at Y, go to D or F based on shorter queue
-            if (stationD.compareTo(stationF) < 0) {
+//            if (stationD.getQueueLength() - 1 <= stationF.getQueueLength()) {
+//                return stationD;
+//            }
+
+            if (stationD.getQueueLength() <= stationF.getQueueLength()) {
                 return stationD;
             }
+
             return stationF;
         case 5:
             if (buildingContainingItem == buildingY) {
@@ -165,6 +215,10 @@ public class Company {
 //            return truckStationX;
 //        }
 //        return truckStationY;
+    }
+
+    public static int getThroughput() {
+        return completeCount;
     }
 
     public static Building getBuildingAtStation(Station s) {

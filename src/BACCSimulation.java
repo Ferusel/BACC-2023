@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * @version CS2030S AY20/21 Semester 2
  */
 class BACCSimulation extends Simulation {
-    private final int MAX_CYCLES = 2160;
+    private final int MAX_ITEMS = 890;
     /**
      * The list of customer arrival events to populate
      * the simulation with.
@@ -22,7 +22,7 @@ class BACCSimulation extends Simulation {
         this.initEvents = new ArrayList<>();
         this.c = new Company();
 
-        for (int i = 0; i < MAX_CYCLES; i++) {
+        for (int i = 0; i < MAX_ITEMS; i++) {
             int arrivalTime = i * 5;
             Item l = new Item(arrivalTime, 1);
             this.initEvents.add(new EventArrival(arrivalTime, l, Company.getBuildingX()));
