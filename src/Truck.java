@@ -23,4 +23,10 @@ public class Truck {
         this.destination = d;
     }
 
+    public void swapLocations() {
+        Building tmp = this.currentLocation;
+        this.currentLocation = this.destination;
+        this.destination = tmp;
+    }
+
 }

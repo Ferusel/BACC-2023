@@ -4,13 +4,9 @@ import java.util.ArrayList;
  * Occurs only if we know the transportation will definitely occur
  */
 class EventTransport extends Event {
-    private final Building itemsLocation;
-    private final boolean isReturnJourney;
 
-    public EventTransport(double time, Building itemsLocation, boolean isReturnJourney) {
+    public EventTransport(double time) {
         super(time, EventPriorityEnum.P_TruckTransport);
-        this.itemsLocation = itemsLocation;
-        this.isReturnJourney = isReturnJourney;
     }
 
 
@@ -21,8 +17,6 @@ class EventTransport extends Event {
 
     @Override
     public Event[] simulate() {
-        return new Event[]{ new EventTruckBeginJourney(this.getTime(), this.itemsLocation, this.isReturnJourney) };
-
-
+        return new Event[]{ new EventTruckBeginJourney(this.getTime()) };
     }
 }
