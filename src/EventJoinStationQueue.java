@@ -15,7 +15,7 @@ class EventJoinStationQueue extends Event {
 
     @Override
     public String toString() {
-        return super.toString() + String.format(": %s joined %s queue", i, s);
+        return super.toString() + String.format(": EVENT_JOIN_STATION_QUEUE : %s joined %s queue", i, s);
     }
 
 

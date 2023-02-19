@@ -4,6 +4,7 @@ class Item implements Comparable<Item> {
     private final double arrivalTime;
     private int currStep;
     private final int LAST_STEP = 6;
+    static final Item EMPTY_ITEM = new Item(0, 0);
 
     public Item(double arrivalTime, int currStep) {
         this.id = ++lastId;
@@ -25,6 +26,9 @@ class Item implements Comparable<Item> {
 
     @Override
     public String toString() {
+        if (this == Item.EMPTY_ITEM) {
+            return "";
+        }
         return "I" + id;
     }
 

@@ -27,6 +27,8 @@ class BACCSimulation extends Simulation {
             Item l = new Item(arrivalTime, 1);
             this.initEvents.add(new EventArrival(arrivalTime, l, Company.getBuildingX()));
         }
+
+        this.initEvents.add(new EventTransport(0)); // Truck begins moving
     }
 
 

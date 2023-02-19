@@ -15,14 +15,14 @@ class EventServiceBegin extends Event {
 
     @Override
     public String toString() {
-        return super.toString() + String.format(": %s service begin at %s", this.i, this.s);
+        return super.toString() + String.format(": EVENT_SERVICE_BEGIN : %s service begin at %s", this.i, this.s);
     }
 
 
     @Override
     public Event[] simulate() {
-        this.s.makeBusy();
-        int currStep = i.getCurrStep();
+        this.s.makeBusy(this.i);
+        int currStep = this.i.getCurrStep();
         // Process item
         this.i.processToNextStep();
         return new Event[]{

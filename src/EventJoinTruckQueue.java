@@ -14,24 +14,13 @@ class EventJoinTruckQueue extends Event {
 
     @Override
     public String toString() {
-        return super.toString() + String.format(": %s joining truck queue at %s", i, b);
+        return super.toString() + String.format(": EVENT_JOIN_TRUCK_QUEUE : %s joining truck queue at %s", i, b);
     }
 
 
     @Override
     public Event[] simulate() {
         this.b.enqueueTransport(this.i);
-        if (Company.isBuildingX(this.b) && this.b.getTransportQueueLength() >= 5) {
-            if (this.b == Company.getTruck().getCurrentLocation()) {
-                return new Event[]{
-                        new EventTransport(this.getTime(), this.b, false)
-                };
-            } else {
-                return new Event[]{
-                        new EventTransportDelay(this.getTime() + DELAY_TIME, this.b)
-                };
-            }
-        }
 
         // For BuildingY
         return new Event[]{};

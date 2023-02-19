@@ -7,6 +7,8 @@ class Station implements Comparable<Station> {
     private final int[] serviceableSteps;
     private final int id;
     private final Queue<Item> queue;
+    private Item currWorkedItem;
+    private final Item EMPTY_ITEM = new Item(0, 0);
 
     public Station(int[] serviceableSteps, String stationName, int id) {
         this.makeAvailable();
@@ -20,11 +22,20 @@ class Station implements Comparable<Station> {
         return this.available;
     }
 
-    public void makeBusy() {
+    public Item peekItem() {
+        if (this.currWorkedItem == null) {
+            return Item.EMPTY_ITEM;
+        }
+        return this.currWorkedItem;
+    }
+
+    public void makeBusy(Item item) {
+        this.currWorkedItem = item;
         this.available = false;
     }
 
     public void makeAvailable() {
+        this.currWorkedItem = null;
         this.available = true;
     }
 
