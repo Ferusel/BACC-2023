@@ -21,6 +21,11 @@ class EventServiceBegin extends Event {
 
     @Override
     public Event[] simulate() {
+        if (!this.s.isAvailable()) { 
+            return new Event[]{
+                new EventJoinStationQueue(this.getTime(), this.s, this.i, this.b)
+            }; 
+        }
         this.s.makeBusy(this.i);
         int currStep = this.i.getCurrStep();
         // Process item

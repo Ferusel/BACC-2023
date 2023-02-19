@@ -53,4 +53,17 @@ public class Building {
         return String.format("Building %s", this.buildingName);
     }
 
+    public String getTruckQueueRepresentation() {
+        // String res = "[";
+        // for (int i = 0; i < this.transportItemQueue.size(); i++) {
+        //     res += this.transportItemQueue.get(i);
+        //     if (i != this.transportItemQueue.size() - 1) {
+        //         res += ",";
+        //     }
+        // }
+        // res += "]";
+        // return res;
+        return this.transportItemQueue.toString();
+    }
+
 }

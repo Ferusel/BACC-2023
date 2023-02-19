@@ -67,12 +67,18 @@ public class Company {
         for (int i = 0; i < stations.length; i++) {
             Station s = stations[i];
             Item workedItem = s.peekItem();
-            if (i < 5) {
-                res += String.format("%s,%s,", workedItem.toString(), workedItem.getCurrStep());
-            } else {
-                res += String.format("%s,%s", workedItem.toString(), workedItem.getCurrStep());
-            }
+            res += String.format("%s,%s,", workedItem.toString(), workedItem.getCurrStep());
         }
+        // Populate queue representation
+        
+        for (int i = 0; i < stations.length; i++) {
+            Station s = stations[i];
+            String queueRep = s.getQueueRepresentation();
+            res += String.format("%s,", queueRep);
+        }
+        res += String.format("%s,", buildingX.getTruckQueueRepresentation());
+        res += String.format("%s,", buildingY.getTruckQueueRepresentation());
+
         return res;
     }
 
@@ -101,7 +107,7 @@ public class Company {
             return stationC;
         case 3:
             if (buildingContainingItem == buildingX) {
-                if (truckStationX.getQueueLength() >= STEP3) {
+                if (buildingContainingItem.getTransportQueueLength() >= STEP3) {
                     return stationA;
                 }
                 return truckStationX;
@@ -118,7 +124,7 @@ public class Company {
             }
             return stationF;
         case 5:
-            if (truckStationY.getQueueLength() >= STEP5) {
+            if (buildingContainingItem.getTransportQueueLength() >= STEP5) {
                 return stationE;
             }
             return truckStationY;

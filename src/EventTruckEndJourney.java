@@ -6,10 +6,12 @@ import java.util.ArrayList;
  */
 class EventTruckEndJourney extends Event {
     private final Truck truck;
+    private final ArrayList<Item> items;
 
-    public EventTruckEndJourney(double time) {
+    public EventTruckEndJourney(double time, ArrayList<Item> deliveredItems) {
         super(time, EventPriorityEnum.P_TruckTransport);
         this.truck = Company.getTruck();
+        this.items = deliveredItems;
     }
 
     @Override
@@ -21,11 +23,11 @@ class EventTruckEndJourney extends Event {
 
     @Override
     public Event[] simulate() {
-        ArrayList<Item> deliveredItems = truck.getCurrentLocation().getTopFiveItems();
-        Event[] res = new Event[deliveredItems.size() + 1];
+        //ArrayList<Item> deliveredItems = truck.getCurrentLocation().getTopFiveItems();
+        Event[] res = new Event[items.size() + 1];
 
         for (int i = 0; i < res.length - 1; i++) {
-            res[i] = new EventProcessItem(this.getTime(), deliveredItems.get(i), truck.getDestination());
+            res[i] = new EventProcessItem(this.getTime(), items.get(i), truck.getDestination());
         }
 
         res[res.length - 1] = new EventTransport(this.getTime());

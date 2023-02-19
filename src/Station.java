@@ -54,6 +54,19 @@ class Station implements Comparable<Station> {
         return this.queue.size();
     }
 
+    public String getQueueRepresentation() {
+        // String res = "[";
+        // for (int i = 0; i < this.queue.size(); i++) {
+        //     res += this.queue.get(i);
+        //     if (i != this.queue.size() - 1) {
+        //         res += ",";
+        //     }
+        // }
+        // res += "]";
+        // return res;
+        return this.queue.toString();
+    }
+
     /**
      * DD: Compare stations by length, then by ID
      *

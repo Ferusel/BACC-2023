@@ -3,7 +3,7 @@ class Item implements Comparable<Item> {
     private final int id;
     private final double arrivalTime;
     private int currStep;
-    private final int LAST_STEP = 6;
+    private final int LAST_STEP = 7;
     static final Item EMPTY_ITEM = new Item();
 
     public Item() {
@@ -42,10 +42,14 @@ class Item implements Comparable<Item> {
     @Override
     public int compareTo(Item i) {
         if (this.currStep > i.getCurrStep()) {
-            return 1;
-        } else if (this.currStep < i.getCurrStep()) {
             return -1;
+        } else if (this.currStep < i.getCurrStep()) {
+            return 1;
+        } 
+        if (this.id > i.id) {
+            return 1;
+        } else { 
+            return -1; 
         }
-        return 0;
     }
 }
