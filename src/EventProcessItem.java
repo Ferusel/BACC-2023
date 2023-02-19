@@ -19,7 +19,7 @@ class EventProcessItem extends Event {
 
     @Override
     public Event[] simulate() {
-        Station s = Company.getNextStation(this.i, this.b);
+        Station s = Company.getNextStation(this.i);
         if (s == null) {
             // Should never happen
             System.out.println("=====> BUG FOUND IN EVENTPROCESSING: Item completed but still called");

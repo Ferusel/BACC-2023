@@ -70,7 +70,7 @@ public class Company {
             res += String.format("%s,%s,", workedItem.toString(), workedItem.getCurrStep());
         }
         // Populate queue representation
-        
+
         for (int i = 0; i < stations.length; i++) {
             Station s = stations[i];
             String queueRep = s.getQueueRepresentation();
@@ -90,9 +90,10 @@ public class Company {
         return buildingY;
     }
 
-    public static Station getNextStation(Item i, Building buildingContainingItem) {
+    public static Station getNextStation(Item i) {
         // Guard clause, just in case
         int step = i.getCurrStep();
+        Building buildingContainingItem = i.getLocation();
         if (step >= 7) {
             return null;
         }
@@ -124,10 +125,13 @@ public class Company {
             }
             return stationF;
         case 5:
-            if (buildingContainingItem.getTransportQueueLength() >= STEP5) {
-                return stationE;
+            if (buildingContainingItem == buildingY) {
+                if (buildingContainingItem.getTransportQueueLength() >= STEP5) {
+                    return stationE;
+                }
+                return truckStationY;
             }
-            return truckStationY;
+            return stationC;
         case 6:
             if (buildingContainingItem == buildingX) {
                 return stationB;

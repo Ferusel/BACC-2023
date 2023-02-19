@@ -27,7 +27,9 @@ class EventTruckEndJourney extends Event {
         Event[] res = new Event[items.size() + 1];
 
         for (int i = 0; i < res.length - 1; i++) {
-            res[i] = new EventProcessItem(this.getTime(), items.get(i), truck.getDestination());
+            Item item = items.get(i);
+            item.changeLocation(truck.getDestination());
+            res[i] = new EventProcessItem(this.getTime(), item, truck.getDestination());
         }
 
         res[res.length - 1] = new EventTransport(this.getTime());

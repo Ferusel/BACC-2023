@@ -54,6 +54,7 @@ public class Simulator {
         try {
             FileWriter fw = new FileWriter("logged_results.csv");
             FileWriter completedItemsFw = new FileWriter("completed_items.csv");
+            FileWriter logsFw = new FileWriter("logs.txt");
             fw.write(String.format("%s," +
                             "%s,%s," +
                             "%s,%s," +
@@ -81,6 +82,7 @@ public class Simulator {
             int t = 0;
             while (event != null && counter < MAX_LOOP) {
                 System.out.println(event);
+                logsFw.write(event + "\n");
                 if (event instanceof EventCompleteItem) {
                     completedItemsFw.write(String.format("%.0f, %s\n", event.getTime(), ((EventCompleteItem) event).getItem()));
                 }
@@ -99,6 +101,7 @@ public class Simulator {
             }
 
             fw.close();
+            logsFw.close();
             completedItemsFw.close();
         } catch (IOException e) {
             e.printStackTrace();

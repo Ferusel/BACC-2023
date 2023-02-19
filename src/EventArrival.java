@@ -20,7 +20,7 @@ class EventArrival extends Event {
     // DD: Invariant: the only time an Event's time is changed is when it's being serviced or if it's being transported.
     @Override
     public Event[] simulate() {
-        Station s = Company.getNextStation(this.i, this.b);
+        Station s = Company.getNextStation(this.i);
         if (s == null) {
             // Should never happen
             System.out.println("=====> BUG FOUND IN EVENTARRIVAL: Item completed but still called");
