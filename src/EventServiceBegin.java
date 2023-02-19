@@ -21,8 +21,8 @@ class EventServiceBegin extends Event {
 
     @Override
     public Event[] simulate() {
-        this.s.makeBusy();
-        int currStep = i.getCurrStep();
+        this.s.makeBusy(this.i);
+        int currStep = this.i.getCurrStep();
         // Process item
         this.i.processToNextStep();
         return new Event[]{

@@ -60,6 +60,22 @@ public class Company {
             ))
     );
 
+    public static String getStationStatesAsString() {
+        // 12 columns to deal with
+        String res = "";
+        Station[] stations = new Station[]{ stationA, stationB, stationC, stationD, stationE, stationF };
+        for (int i = 0; i < stations.length; i++) {
+            Station s = stations[i];
+            Item workedItem = s.peekItem();
+            if (i < 5) {
+                res += String.format("%s,%s", workedItem.toString(), workedItem.getCurrStep());
+            } else {
+                res += String.format("%s,%s\n", workedItem.toString(), workedItem.getCurrStep());
+            }
+        }
+        return res;
+    }
+
     public static Building getBuildingX() {
         return buildingX;
     }

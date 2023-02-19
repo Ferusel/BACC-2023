@@ -33,6 +33,11 @@ public class Simulator {
         }
     }
 
+    public void logToCsv(FileWriter fw, int time) throws IOException {
+        // Logs the output to CSV
+        fw.write(String.format("%s,%s\n", time, Company.getStationStatesAsString()));
+    }
+
     /**
      * Run the simulation until no more events is in
      * the queue.  For each event in the queue (in
@@ -45,11 +50,25 @@ public class Simulator {
         Event event = this.events.poll();
         int counter = 0;
         try {
-            FileWriter log = new FileWriter("logged_results.txt");
-
-            while (event != null && counter <= 5000) {
+            FileWriter fw = new FileWriter("logged_results.csv");
+            fw.write(String.format("%s,%s,%s\n",
+                    "time",
+                    "StationA_Item", "StationA_ItemStep",
+                    "StationB_Item", "StationB_ItemStep",
+                    "StationC_Item", "StationC_ItemStep",
+                    "StationD_Item", "StationD_ItemStep",
+                    "StationE_Item", "StationE_ItemStep",
+                    "StationF_Item", "StationF_ItemStep\n"
+            ));
+            int t = 0;
+            while (event != null && counter < 50000) {
                 System.out.println(event);
-                log.write(String.format("%s\n", event));
+                int currT = Integer.valueOf(event.toString().split("[:]")[0]);
+                if (currT != t) {
+                    // New t
+                    this.logToCsv(fw, t);
+                    t = currT;
+                }
                 Event[] newEvents = event.simulate();
                 for (Event e : newEvents) {
                     this.events.add(e);
@@ -58,14 +77,10 @@ public class Simulator {
                 counter++;
             }
 
-            log.close();
+            fw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
         return;
-    }
-
-    public void writeToFile() throws IOException {
-
     }
 }
