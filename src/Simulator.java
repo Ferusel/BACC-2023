@@ -13,6 +13,8 @@ import java.util.PriorityQueue;
  * @version CS2030S AY20/21 Semester 2
  */
 public class Simulator {
+    private final int MAX_LOOP = 100;
+
     /**
      * The event queue.
      */
@@ -67,7 +69,7 @@ public class Simulator {
                     "StationF_Item", "StationF_ItemStep"
             ));
             int t = 0;
-            while (event != null && counter < 50000) {
+            while (event != null && counter < MAX_LOOP) {
                 System.out.println(event);
                 int currT = Integer.valueOf(event.toString().split("[:]")[0]);
                 if (currT != t) {

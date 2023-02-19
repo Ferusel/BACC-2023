@@ -4,7 +4,7 @@
 class EventJoinTruckQueue extends Event {
     private final Item i;
     private final Building b;
-    private final int DELAY_TIME = 5;
+    static boolean has_moved = false;
 
     public EventJoinTruckQueue(double time, Item i, Building b) {
         super(time, EventPriorityEnum.P_JoinTruckQueue);
@@ -21,8 +21,13 @@ class EventJoinTruckQueue extends Event {
     @Override
     public Event[] simulate() {
         this.b.enqueueTransport(this.i);
+        if (!EventJoinTruckQueue.has_moved && b.getTransportQueueLength() == 5) {
+            EventJoinTruckQueue.has_moved = true;
+            return new Event[]{
+                    new EventTransport(this.getTime())
+            };
+        }
 
-        // For BuildingY
         return new Event[]{};
     }
 }
