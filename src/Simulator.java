@@ -53,6 +53,7 @@ public class Simulator {
         int counter = 0;
         try {
             FileWriter fw = new FileWriter("logged_results.csv");
+            FileWriter completedItemsFw = new FileWriter("completed_items.csv");
             fw.write(String.format("%s," +
                             "%s,%s," +
                             "%s,%s," +
@@ -76,9 +77,13 @@ public class Simulator {
                     "StationTruckX_Queue",
                     "StationTruckY_Queue"
             ));
+            completedItemsFw.write(String.format("%s, %s)", "Time", "ItemID"));
             int t = 0;
             while (event != null && counter < MAX_LOOP) {
                 System.out.println(event);
+                if (event instanceof EventCompleteItem) {
+                    completedItemsFw.write(String.format("%.0f, %s\n", event.getTime(), ((EventCompleteItem) event).getItem()));
+                }
                 int currT = Integer.valueOf(event.toString().split("[:]")[0]);
                 if (currT != t) {
                     // New t
@@ -94,6 +99,7 @@ public class Simulator {
             }
 
             fw.close();
+            completedItemsFw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
