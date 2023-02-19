@@ -50,7 +50,7 @@ public class Building {
 
     @Override
     public String toString() {
-        return String.format("Building %s", this.buildingName);
+        return String.format("%s", this.buildingName);
     }
 
     public String getTruckQueueRepresentation() {

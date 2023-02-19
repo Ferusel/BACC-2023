@@ -23,6 +23,7 @@ class EventTruckBeginJourney extends Event {
     @Override
     public Event[] simulate() {
         deliveredItems = truck.getCurrentLocation().getTopFiveItems();
+        truck.loadTruck(deliveredItems);
         return new Event[]{
                 new EventTruckEndJourney(this.getTime() + TRANSPORT_TIME, deliveredItems)
         };

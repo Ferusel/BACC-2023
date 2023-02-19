@@ -124,6 +124,9 @@ public class Company {
         res += String.format("%s,", buildingX.getTruckQueueRepresentation());
         res += String.format("%s,", buildingY.getTruckQueueRepresentation());
 
+        // Populate Truck Items + Truck Destination
+        res += Company.getTruck().getTruckDataInCsv();
+
         return res;
     }
 

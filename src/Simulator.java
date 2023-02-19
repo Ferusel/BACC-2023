@@ -69,6 +69,12 @@ public class Simulator {
                             "%s," +
                             "%s," +
                             "%s," +
+                            "%s," +
+                            "%s," +
+                            "%s," +
+                            "%s," +
+                            "%s," +
+                            "%s," +
                             "%s\n",
                     "time",
                     "StationA_Item", "StationA_ItemStep",
@@ -84,7 +90,13 @@ public class Simulator {
                     "StationE_Queue",
                     "StationF_Queue",
                     "StationTruckX_Queue",
-                    "StationTruckY_Queue"
+                    "StationTruckY_Queue",
+                    "TruckDestination",
+                    "TruckSlot1",
+                    "TruckSlot2",
+                    "TruckSlot3",
+                    "TruckSlot4",
+                    "TruckSlot5"
             ));
             completedItemsFw.write(String.format("%s, %s)", "Time", "ItemID"));
             int t = 0;

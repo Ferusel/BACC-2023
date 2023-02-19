@@ -24,6 +24,7 @@ class EventTruckEndJourney extends Event {
     @Override
     public Event[] simulate() {
         //ArrayList<Item> deliveredItems = truck.getCurrentLocation().getTopFiveItems();
+        truck.unloadTruck();
         Event[] res = new Event[items.size() + 1];
 
         for (int i = 0; i < res.length - 1; i++) {
