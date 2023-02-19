@@ -3,7 +3,7 @@ import java.util.PriorityQueue;
 
 public class Company {
     // TODO: Magic Numbers
-    static final int STEP3 = 5;
+    static final int STEP3 = 3;
     static final int STEP5 = 3;
 
     static Station stationA = new Station(new int[]{ 1, 3 }, "StationA", 0);
@@ -100,10 +100,14 @@ public class Company {
             }
             return stationC;
         case 3:
-            if (truckStationX.getQueueLength() >= STEP3) {
-                return stationA;
+            if (buildingContainingItem == buildingX) {
+                if (truckStationX.getQueueLength() >= STEP3) {
+                    return stationA;
+                }
+                return truckStationX;
+            } else {
+                return stationE;
             }
-            return truckStationX;
         case 4:
             if (buildingContainingItem == buildingX) {
                 return truckStationX;

@@ -7,7 +7,7 @@ class EventServiceBegin extends Event {
     private final Building b;
 
     public EventServiceBegin(double time, Station s, Item i, Building b) {
-        super(time, EventPriorityEnum.P_Arrival);
+        super(time, EventPriorityEnum.P_ServiceBegin);
         this.b = b;
         this.s = s;
         this.i = i;

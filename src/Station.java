@@ -38,7 +38,11 @@ class Station implements Comparable<Station> {
         this.available = true;
     }
 
-    boolean enqueueItem(Item i) {
+    public Item dequeueItem() {
+        return this.queue.poll();
+    }
+
+    public boolean enqueueItem(Item i) {
         return this.queue.add(i);
     }
 

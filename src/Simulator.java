@@ -13,7 +13,7 @@ import java.util.PriorityQueue;
  * @version CS2030S AY20/21 Semester 2
  */
 public class Simulator {
-    private final int MAX_LOOP = 100;
+    private final int MAX_LOOP = 500;
 
     /**
      * The event queue.

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Only created when Item is created
  */
@@ -23,13 +25,24 @@ class EventServiceEnd extends Event {
     public Event[] simulate() {
         this.s.makeAvailable();
 
-        if (this.i.isCompleted()) {
-            return new Event[]{
-                    new EventCompleteItem(this.getTime(), this.i)
-            };
+        ArrayList<Event> res = new ArrayList<>();
+        if (this.s.getQueueLength() > 0) {
+            // Take the next in queue and process it
+            res.add(new EventServiceBegin(this.getTime(), this.s, this.s.dequeueItem(), this.b));
         }
-        return new Event[]{
-                new EventProcessItem(this.getTime(), this.i, this.b)
-        };
+
+        if (this.i.isCompleted()) {
+            res.add(new EventCompleteItem(this.getTime(), this.i));
+        } else {
+            res.add(new EventProcessItem(this.getTime(), this.i, this.b));
+        }
+       
+        
+
+        Event[] finalRes = new Event[res.size()];
+        for (int i = 0; i < finalRes.length; i++) {
+            finalRes[i] = res.get(i);
+        }
+        return finalRes;
     }
 }
