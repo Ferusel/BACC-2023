@@ -1,6 +1,3 @@
-/**
- * Only created when Item is created
- */
 class EventJoinStationQueue extends Event {
     private final Station s;
     private final Item i;

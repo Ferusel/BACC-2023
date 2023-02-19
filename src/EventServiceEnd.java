@@ -1,8 +1,5 @@
 import java.util.ArrayList;
 
-/**
- * Only created when Item is created
- */
 class EventServiceEnd extends Event {
     private final Item i;
     private final Station s;
@@ -36,8 +33,7 @@ class EventServiceEnd extends Event {
         } else {
             res.add(new EventProcessItem(this.getTime(), this.i, this.b));
         }
-       
-        
+
 
         Event[] finalRes = new Event[res.size()];
         for (int i = 0; i < finalRes.length; i++) {

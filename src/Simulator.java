@@ -3,31 +3,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.PriorityQueue;
 
-/**
- * This class implements a discrete event simulator.
- * The simulator maintains a priority queue of events,
- * and run through the events, simulate each one until
- * the queue is empty.
- *
- * @author Wei Tsang
- * @version CS2030S AY20/21 Semester 2
- */
 public class Simulator {
     private final int MAX_TIME = 10800;
 
-    /**
-     * The event queue.
-     */
     private final PriorityQueue<Event> events;
 
-    /**
-     * The constructor for a simulator.  It takes in
-     * a simulation as an argument, and calls the
-     * getInitialEvents method of that simulation to
-     * initialize the event queue.
-     *
-     * @param simulation The simulation to simulate.
-     */
     public Simulator(Simulation simulation) {
         this.events = new PriorityQueue<Event>();
         for (Event e : simulation.getInitialEvents()) {
@@ -40,14 +20,6 @@ public class Simulator {
         fw.write(String.format("%s,%s\n", time, Company.getStationStatesAsString()));
     }
 
-    /**
-     * Run the simulation until no more events is in
-     * the queue.  For each event in the queue (in
-     * increasing order of time), print out its string
-     * representation, then simulate it.  If the
-     * simulation returns one or more events, add them
-     * to the queue, and repeat.
-     */
     public int run() {
         Event event = this.events.poll();
         try {
@@ -98,7 +70,7 @@ public class Simulator {
                     "TruckSlot4",
                     "TruckSlot5"
             ));
-            completedItemsFw.write(String.format("%s, %s)", "Time", "ItemID"));
+            completedItemsFw.write(String.format("%s, %s\n", "Time", "ItemID"));
             int t = 0;
             while (event != null && t <= MAX_TIME) {
                 System.out.println(event);

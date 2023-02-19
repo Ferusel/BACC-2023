@@ -1,6 +1,3 @@
-/**
- * Only created when Item is created
- */
 class EventProcessItem extends Event {
     private final Item i;
     private final Building b;

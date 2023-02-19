@@ -1,8 +1,5 @@
 import java.util.ArrayList;
 
-/**
- * Only created when Item is created
- */
 class EventTruckBeginJourney extends Event {
     private final Truck truck;
     private final int TRANSPORT_TIME = 25;

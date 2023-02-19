@@ -1,8 +1,5 @@
 import java.util.ArrayList;
 
-/**
- * Occurs only if we know the transportation will definitely occur
- */
 class EventTransport extends Event {
 
     public EventTransport(double time) {

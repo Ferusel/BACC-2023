@@ -1,9 +1,6 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-/**
- * Only created when Item is created
- */
 class EventTruckEndJourney extends Event {
     private final Truck truck;
     private final ArrayList<Item> items;

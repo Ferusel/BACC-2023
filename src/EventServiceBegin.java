@@ -1,6 +1,3 @@
-/**
- * Only created when Item is created
- */
 class EventServiceBegin extends Event {
     private final Item i;
     private final Station s;
@@ -21,10 +18,10 @@ class EventServiceBegin extends Event {
 
     @Override
     public Event[] simulate() {
-        if (!this.s.isAvailable()) { 
+        if (!this.s.isAvailable()) {
             return new Event[]{
-                new EventJoinStationQueue(this.getTime(), this.s, this.i, this.b)
-            }; 
+                    new EventJoinStationQueue(this.getTime(), this.s, this.i, this.b)
+            };
         }
         this.s.makeBusy(this.i);
         int currStep = this.i.getCurrStep();

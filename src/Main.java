@@ -2,12 +2,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-/**
- * The main class for CS2030S Lab 1.
- *
- * @author Wei Tsang
- * @version CS2030S AY20/21 Semester 2
- */
 class Main {
     public static void main(String[] args) {
 

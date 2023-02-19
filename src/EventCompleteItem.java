@@ -1,6 +1,3 @@
-/**
- * Only created when Item is created
- */
 class EventCompleteItem extends Event {
     private final Item i;
 
