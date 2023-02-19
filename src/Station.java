@@ -8,7 +8,6 @@ class Station implements Comparable<Station> {
     private final int id;
     private final Queue<Item> queue;
     private Item currWorkedItem;
-    private final Item EMPTY_ITEM = new Item(0, 0);
 
     public Station(int[] serviceableSteps, String stationName, int id) {
         this.makeAvailable();

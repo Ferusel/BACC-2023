@@ -4,7 +4,13 @@ class Item implements Comparable<Item> {
     private final double arrivalTime;
     private int currStep;
     private final int LAST_STEP = 6;
-    static final Item EMPTY_ITEM = new Item(0, 0);
+    static final Item EMPTY_ITEM = new Item();
+
+    public Item() {
+        this.id = 0;
+        this.arrivalTime = 0;
+        this.currStep = 0;
+    }
 
     public Item(double arrivalTime, int currStep) {
         this.id = ++lastId;
