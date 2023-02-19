@@ -51,14 +51,20 @@ public class Simulator {
         int counter = 0;
         try {
             FileWriter fw = new FileWriter("logged_results.csv");
-            fw.write(String.format("%s,%s,%s\n",
+            fw.write(String.format("%s," +
+                            "%s,%s," +
+                            "%s,%s," +
+                            "%s,%s," +
+                            "%s,%s," +
+                            "%s,%s," +
+                            "%s,%s\n",
                     "time",
                     "StationA_Item", "StationA_ItemStep",
                     "StationB_Item", "StationB_ItemStep",
                     "StationC_Item", "StationC_ItemStep",
                     "StationD_Item", "StationD_ItemStep",
                     "StationE_Item", "StationE_ItemStep",
-                    "StationF_Item", "StationF_ItemStep\n"
+                    "StationF_Item", "StationF_ItemStep"
             ));
             int t = 0;
             while (event != null && counter < 50000) {

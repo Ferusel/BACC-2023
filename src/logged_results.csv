@@ -1,4 +1,5 @@
-time,StationA_Item,StationA_ItemStep
+time,StationA_Item,StationA_ItemStep,StationB_Item,StationB_ItemStep,StationC_Item,StationC_ItemStep,StationD_Item,StationD_ItemStep,StationE_Item,StationE_ItemStep,StationF_Item,StationF_ItemStep
+,
 0,I10,2,0,0,0,0,0
 
 5,I11,2I10,3,0,0,0,0

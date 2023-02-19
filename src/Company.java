@@ -68,7 +68,7 @@ public class Company {
             Station s = stations[i];
             Item workedItem = s.peekItem();
             if (i < 5) {
-                res += String.format("%s,%s", workedItem.toString(), workedItem.getCurrStep());
+                res += String.format("%s,%s,", workedItem.toString(), workedItem.getCurrStep());
             } else {
                 res += String.format("%s,%s\n", workedItem.toString(), workedItem.getCurrStep());
             }
