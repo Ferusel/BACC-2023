@@ -22,14 +22,14 @@ public class Company {
     static int completeCount;
 
     // Map of { Step : Station[] }
-    static final Map<Integer, Station[]> stepToStationMap = Map.ofEntries(
-            Map.entry(1, new Station[]{ stationA, stationD, stationE }),
-            Map.entry(2, new Station[]{ stationB, stationC }),
-            Map.entry(3, new Station[]{ stationA, stationE }),
-            Map.entry(4, new Station[]{ stationD, stationF }),
-            Map.entry(5, new Station[]{ stationC, stationE }),
-            Map.entry(6, new Station[]{ stationB, stationF })
-    );
+    // static final Map<Integer, Station[]> stepToStationMap = Map.ofEntries(
+    //         Map.entry(1, new Station[]{ stationA, stationD, stationE }),
+    //         Map.entry(2, new Station[]{ stationB, stationC }),
+    //         Map.entry(3, new Station[]{ stationA, stationE }),
+    //         Map.entry(4, new Station[]{ stationD, stationF }),
+    //         Map.entry(5, new Station[]{ stationC, stationE }),
+    //         Map.entry(6, new Station[]{ stationB, stationF })
+    // );
 
     // Map of { Station: { Step : Time} }
     static final Map<Station, Map<Integer, Integer>> stationToProcessTimeMap = Map.ofEntries(
