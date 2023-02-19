@@ -63,7 +63,7 @@ public class Building {
         // }
         // res += "]";
         // return res;
-        return this.transportItemQueue.toString();
+        return this.transportItemQueue.toString().replace(",", " ");
     }
 
 }

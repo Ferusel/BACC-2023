@@ -55,16 +55,16 @@ class Station implements Comparable<Station> {
     }
 
     public String getQueueRepresentation() {
-        // String res = "[";
-        // for (int i = 0; i < this.queue.size(); i++) {
-        //     res += this.queue.get(i);
-        //     if (i != this.queue.size() - 1) {
-        //         res += ",";
-        //     }
-        // }
-        // res += "]";
-        // return res;
-        return this.queue.toString();
+//        String res = "[";
+//        for (int i = 0; i < this.queue.size(); i++) {
+//            res += this.queue.get(i);
+//            if (i != this.queue.size() - 1) {
+//                res += ",";
+//            }
+//        }
+//        res += "]";
+//        return res;
+        return this.queue.toString().replace(",", " ");
     }
 
     /**
