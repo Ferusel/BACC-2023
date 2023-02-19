@@ -108,8 +108,19 @@ public class Simulator {
                 }
                 int currT = Integer.valueOf(event.toString().split("[:]")[0]);
                 if (currT != t) {
+                    int diff = currT - t;
                     // New t
-                    this.logToCsv(fw, t);
+                    // If t skip is more than 5, e.g. 4820 -> 4830, we insert an additional row depending on the size
+                    // of the skip
+                    if (diff >= 10) {
+                        int numOfRowsToDuplicate = (int) diff / 5;
+                        for (int k = 0; k < numOfRowsToDuplicate; k++) {
+                            this.logToCsv(fw, t);
+                            t += 5;
+                        }
+                    } else {
+                        this.logToCsv(fw, t);
+                    }
                     t = currT;
                 }
                 Event[] newEvents = event.simulate();
